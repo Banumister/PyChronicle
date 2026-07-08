@@ -1,23 +1,23 @@
-from src.ast_engine.parser import ASTParser
+import ast
+
+from src.ast_engine.rewriter import ASTRewriter
+from src.tracer.tracer import trace
 
 
 def main():
-    parser = ASTParser("examples/sample.py")
+    with open("examples/calculator.py", "r", encoding="utf-8") as file:
+        source = file.read()
 
-    parser.parse()
+    tree = ast.parse(source)
 
-    print("=" * 50)
-    print("VARIABLE ASSIGNMENTS")
-    print("=" * 50)
+    rewriter = ASTRewriter()
+    new_tree = rewriter.visit(tree)
 
-    assignments = parser.find_assignments()
+    ast.fix_missing_locations(new_tree)
 
-    for item in assignments:
-        print(
-            f"Variable: {item['variable']:<10} "
-            f"Line: {item['line']:<3} "
-            f"Value Type: {item['type']}"
-        )
+    code = compile(new_tree, filename="<ast>", mode="exec")
+
+    exec(code, {"trace": trace})
 
 
 if __name__ == "__main__":
