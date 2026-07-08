@@ -2,10 +2,12 @@ import sys
 
 from src.tracer.tracer import runtime_tracer, trace_events
 from src.storage.database import TraceDatabase
+from src.storage.timeline import Timeline
 
 
 def main():
-    # Initialize database
+
+    # Create database
     database = TraceDatabase()
     database.create_tables()
     database.clear_events()
@@ -21,17 +23,16 @@ def main():
         "exec"
     )
 
-    # Start runtime tracing
+    # Start tracing
     sys.settrace(runtime_tracer)
 
-    # Execute target program
+    # Execute program
     exec(compiled_code, {})
 
     # Stop tracing
     sys.settrace(None)
 
-    # Display runtime events
-    print("\n")
+    print()
     print("=" * 60)
     print("RUNTIME EVENTS")
     print("=" * 60)
@@ -39,13 +40,13 @@ def main():
     for event in trace_events:
         print(event)
 
-    # Save events into SQLite
-    print("\nSaving events to SQLite...\n")
+    print()
+    print("Saving events to SQLite...")
 
     for event in trace_events:
         database.insert_runtime_event(event)
 
-    # Display database contents
+    print()
     print("=" * 60)
     print("DATABASE CONTENT")
     print("=" * 60)
@@ -55,7 +56,34 @@ def main():
     for row in rows:
         print(row)
 
-    # Close database
+    # -----------------------------
+    # Timeline Demo
+    # -----------------------------
+
+    events = database.fetch_event_objects()
+
+    timeline = Timeline(events)
+
+    print()
+    print("=" * 60)
+    print("TIMELINE DEMO")
+    print("=" * 60)
+
+    print("\nCurrent Event")
+    print(timeline.current())
+
+    print("\nNext Event")
+    print(timeline.next())
+
+    print("\nNext Event")
+    print(timeline.next())
+
+    print("\nPrevious Event")
+    print(timeline.previous())
+
+    print("\nJump to Event 8")
+    print(timeline.jump(7))
+
     database.close()
 
 
