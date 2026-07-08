@@ -1,23 +1,62 @@
-import ast
+import sys
 
-from src.ast_engine.rewriter import ASTRewriter
-from src.tracer.tracer import trace
+from src.tracer.tracer import runtime_tracer, trace_events
+from src.storage.database import TraceDatabase
 
 
 def main():
-    with open("examples/calculator.py", "r", encoding="utf-8") as file:
+    # Initialize database
+    database = TraceDatabase()
+    database.create_tables()
+    database.clear_events()
+
+    # Read target program
+    with open("examples/runtime_demo.py", "r", encoding="utf-8") as file:
         source = file.read()
 
-    tree = ast.parse(source)
+    # Compile target program
+    compiled_code = compile(
+        source,
+        "examples/runtime_demo.py",
+        "exec"
+    )
 
-    rewriter = ASTRewriter()
-    new_tree = rewriter.visit(tree)
+    # Start runtime tracing
+    sys.settrace(runtime_tracer)
 
-    ast.fix_missing_locations(new_tree)
+    # Execute target program
+    exec(compiled_code, {})
 
-    code = compile(new_tree, filename="<ast>", mode="exec")
+    # Stop tracing
+    sys.settrace(None)
 
-    exec(code, {"trace": trace})
+    # Display runtime events
+    print("\n")
+    print("=" * 60)
+    print("RUNTIME EVENTS")
+    print("=" * 60)
+
+    for event in trace_events:
+        print(event)
+
+    # Save events into SQLite
+    print("\nSaving events to SQLite...\n")
+
+    for event in trace_events:
+        database.insert_runtime_event(event)
+
+    # Display database contents
+    print("=" * 60)
+    print("DATABASE CONTENT")
+    print("=" * 60)
+
+    rows = database.fetch_events()
+
+    for row in rows:
+        print(row)
+
+    # Close database
+    database.close()
 
 
 if __name__ == "__main__":

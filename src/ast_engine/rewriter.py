@@ -5,55 +5,61 @@ class ASTRewriter(ast.NodeTransformer):
     """
     AST Rewriter for PyChronicle.
 
-    This class visits assignment statements and injects a
-    trace() function call immediately after each assignment.
-
-    Example:
-
-    Original:
-        a = 5
-
-    Rewritten:
-        a = 5
-        trace("a", a, 1)
+    This class injects trace() calls after assignment statements.
     """
 
     def visit_Assign(self, node):
         """
-        Visit assignment nodes and inject a trace() call.
+        Handle normal assignments.
+        Example:
+            a = 5
         """
-        # Visit child nodes first
+
         self.generic_visit(node)
 
-        # Handle only simple variable assignments
         target = node.targets[0]
 
         if isinstance(target, ast.Name):
-
             trace_call = ast.Expr(
                 value=ast.Call(
-                    func=ast.Name(
-                        id="trace",
-                        ctx=ast.Load()
-                    ),
+                    func=ast.Name(id="trace", ctx=ast.Load()),
                     args=[
-                        # Variable name
                         ast.Constant(target.id),
-
-                        # Current variable value
-                        ast.Name(
-                            id=target.id,
-                            ctx=ast.Load()
-                        ),
-
-                        # Line number
-                        ast.Constant(node.lineno)
+                        ast.Name(id=target.id, ctx=ast.Load()),
+                        ast.Constant(node.lineno),
                     ],
-                    keywords=[]
+                    keywords=[],
                 )
             )
 
-            # Return the original assignment followed by trace()
+            return [node, trace_call]
+
+        return node
+
+    def visit_AugAssign(self, node):
+        """
+        Handle augmented assignments.
+        Example:
+            a += 2
+        """
+
+        self.generic_visit(node)
+
+        target = node.target
+
+        if isinstance(target, ast.Name):
+            trace_call = ast.Expr(
+                value=ast.Call(
+                    func=ast.Name(id="trace", ctx=ast.Load()),
+                    args=[
+                        ast.Constant(target.id),
+                        ast.Name(id=target.id, ctx=ast.Load()),
+                        ast.Constant(node.lineno),
+                    ],
+                    keywords=[],
+                )
+            )
+
             return [node, trace_call]
 
         return node
