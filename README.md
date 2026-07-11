@@ -181,6 +181,13 @@ Python Program
 - Dharani
 - Chandru
 
+  ## Future Enhancements
+
+- Graphical User Interface
+- Variable History Visualization
+- Breakpoint Support
+- Export Execution Timeline
+
 # 📄 License
 
 This project is developed as part of the **Infotact Internship Program**.
