@@ -1,0 +1,28 @@
+Screen {
+    align: center middle;
+    background: #0d1117;
+}
+
+Vertical {
+    width: 60;
+    border: round cyan;
+    padding: 2;
+}
+
+#title {
+    content-align: center middle;
+    text-style: bold;
+    color: cyan;
+    height: 3;
+}
+
+#subtitle {
+    content-align: center middle;
+    color: white;
+    margin-bottom: 2;
+}
+
+Button {
+    width: 100%;
+    margin: 1 0;
+}
