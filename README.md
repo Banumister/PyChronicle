@@ -181,12 +181,12 @@ Python Program
 - Dharani
 - Chandru
 
-  ## Future Enhancements
+## 🚀 Future Enhancements
 
-- Graphical User Interface
-- Variable History Visualization
-- Breakpoint Support
-- Export Execution Timeline
+- GUI support
+- Variable history visualization
+- Breakpoint support
+- Export execution timeline
 
 # 📄 License
 
