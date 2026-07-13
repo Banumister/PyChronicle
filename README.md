@@ -174,19 +174,45 @@ Python Program
 - Bug Fixing
 - Final Project Packaging
 
-# 👥 Contributors
-
-- Miller
-- Purva Raut
-- Dharani
-- Chandru
-
 ## 🚀 Future Enhancements
 
 - GUI support
 - Variable history visualization
 - Breakpoint support
 - Export execution timeline
+
+## 🚧 Remaining Work
+
+- State Reconstruction
+- Variable Replay
+- Snapshot Generation
+- Time-Travel Debugging
+  - Step Forward
+  - Step Backward
+  - Jump to Event
+  - Restore Previous Program State
+- Terminal User Interface
+- Timeline Visualization
+- User Interaction
+- Testing
+- Documentation
+- Integration Testing
+- Bug Fixing
+- Final Project Packaging
+
+# 📌 Known Limitations
+
+- Currently supports Python source code only.
+- Terminal UI is under development.
+- State reconstruction is still in progress.
+- Additional testing and optimization are ongoing.
+
+# 👥 Contributors
+
+- Miller
+- Purva Raut
+- Dharani
+- Chandru
 
 # 📄 License
 
