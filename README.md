@@ -81,21 +81,21 @@ Move into the project
 cd PyChronicle
 ```
 
-Create a virtual environment
+### Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate the environment
+### Activate the virtual environment
 
-Windows
+**Windows**
 
 ```bash
 .venv\Scripts\activate
 ```
 
-Install dependencies
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -103,7 +103,7 @@ pip install -r requirements.txt
 
 ---
 
-# ▶️ Run the Project
+## ▶️ Run the Project
 
 ```bash
 python main.py
@@ -111,7 +111,7 @@ python main.py
 
 ---
 
-# 🔄 Workflow
+## 🔄 Workflow
 
 ```text
 Python Program
@@ -140,9 +140,9 @@ Python Program
 
 ---
 
-# 📈 Current Progress
+## 📈 Current Progress
 
-## ✅ Completed (Implemented)
+### ✅ Completed (Implemented)
 
 - Project Setup
 - GitHub Setup
@@ -153,9 +153,7 @@ Python Program
 - Timeline Navigation
 - Initial Program State
 
----
-
-## 🚧 Remaining Work
+### 🚧 Remaining Work
 
 - State Reconstruction
 - Variable Replay
@@ -173,6 +171,8 @@ Python Program
 - Integration Testing
 - Bug Fixing
 - Final Project Packaging
+  
+---
 
 ## 🚀 Future Enhancements
 
@@ -180,6 +180,10 @@ Python Program
 - Variable history visualization
 - Breakpoint support
 - Export execution timeline
+- Performance optimization
+- Improved debugging experience
+
+---
 
 # 📌 Known Limitations
 
@@ -188,12 +192,16 @@ Python Program
 - State reconstruction is still in progress.
 - Additional testing and optimization are ongoing.
 
+---
+
 # 👥 Contributors
 
 - Miller
 - Purva Raut
 - Dharani
 - Chandru
+
+---
 
 # 📄 License
 
