@@ -3,7 +3,6 @@ from debugger import DebuggerScreen
 from history import HistoryScreen 
 from settings import SettingsScreen 
 from variables import VariablesScreen 
-from timeline import TimelineScreen 
 from variables import VariablesScreen 
 from timeline import TimelineScreen 
 from textual.screen import Screen
@@ -16,13 +15,14 @@ class DashboardScreen(Screen):
     def compose(self):
      yield Vertical(
         Static("🚀 PYCHRONICLE 🚀", id="title"),
-        Static("Time Travel Debugger"),
+        Static("AI powered Time Travel Debugger",id="subtitle"),
         Button("▶ Start Debugging", id="debug"),
         Button("📜 Timeline", id="timeline"),
         Button(" Variables", id="variables"),
         Button("📖 History", id="history"),
         Button("⚙ Settings", id="settings"),
         Button("❌ Exit", id="exit"),
+        Static("version 1.0| Developed by Team PyChronicle", id="footer"),
     )
     def on_button_pressed(self, event: Button.Pressed):
      if event.button.id == "debug":

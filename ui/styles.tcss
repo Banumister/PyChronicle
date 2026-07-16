@@ -1,28 +1,82 @@
 Screen {
     align: center middle;
-    background: #0d1117;
+    background: #0b1020;
 }
 
 Vertical {
-    width: 60;
+    width: 70;
+    height:auto;
     border: round cyan;
-    padding: 2;
+    padding: 2 3;
+    background: #1A103D;
 }
 
 #title {
     content-align: center middle;
+    color:cyan;
     text-style: bold;
-    color: cyan;
-    height: 3;
+    height:3;
+    margin-bottom: 1;
+}
+#line {
+    text-align: center;
+    color: #00ffff;
+    margin-bottom: 1;
 }
 
-#subtitle {
-    content-align: center middle;
+TimelineScreen Vertical {
+    width: 70;
+    padding: 2;
+    border: round cyan;
+    background: #151b3b;
+}
+
+TimelineScreen Static {
+    text-align: center;
+    margin: 1;
     color: white;
-    margin-bottom: 2;
 }
 
 Button {
-    width: 100%;
+    width: 90%;
+    height: 3;
     margin: 1 0;
+    background: #1e3a5f;
+    color: white;
+    border: round cyan;
+}
+Button {
+    width: 100%;
+    height:3;
+    margin:1 0;
+    background: #1e3a5f;
+    color: white;
+    border: round cyan;
+}
+Button:hover{
+    background:cyan;
+    color:black;
+    text-style:bold;
+}
+Button:focus{
+    background:#00bfff;
+    color:black;
+    border:heavy cyan;
+}
+#footer{
+    content-align: center middle;
+    color:gray;
+    margin-top: 1;
+}
+#back {
+    width: 30;
+    height: 3;
+    margin:2 0;
+    background:#0ea5e9;
+    color:white;
+    border:round cyan;
+}
+#back:hover{
+    background:cyan;
+    color:black;
 }
