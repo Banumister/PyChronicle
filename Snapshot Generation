@@ -1,0 +1,19 @@
+def snapshot(self):
+    return dict(self.variables)
+class ProgramState:
+
+    def __init__(self):
+        self.variables = {}
+        self.snapshots = []
+
+    def assign(self, variable, value):
+        self.variables[variable] = value
+
+        self.snapshots.append(dict(self.variables))
+
+    def snapshot(self):
+        return dict(self.variables)
+
+    def get_snapshots(self):
+        return self.snapshots
+    
