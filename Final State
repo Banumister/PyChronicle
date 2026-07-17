@@ -1,0 +1,23 @@
+from src.storage.state import ProgramState
+
+state = ProgramState()
+
+state.assign("x",10)
+state.assign("y",20)
+state.assign("z",30)
+state.assign("x",50)
+
+print("Current State")
+print(state.snapshot())
+
+print("\nSnapshots")
+print(state.get_snapshots())
+
+print("\nReplay x")
+print(state.replay_variable("x"))
+
+print("\nState at Step 2")
+print(state.reconstruct_state(1))
+
+print("\nCurrent after Reconstruction")
+print(state.snapshot())
