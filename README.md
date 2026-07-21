@@ -194,6 +194,20 @@ Python Program
 
 ---
 
+## 🚀 Future Enhancements
+
+- GUI support
+- Variable history visualization
+- Breakpoint support
+- Export execution timeline
+
+# 📌 Known Limitations
+
+- Currently supports Python source code only.
+- Terminal UI is under development.
+- State reconstruction is still in progress.
+- Additional testing and optimization are ongoing.
+
 # 👥 Contributors
 
 - Miller
