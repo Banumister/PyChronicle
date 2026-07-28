@@ -196,7 +196,7 @@ Python Program
 
 # 👥 Contributors
 
-- Miller
+- Goudaperu Bhanu Prakash
 - Purva Raut
 - Dharani
 - Chandru
