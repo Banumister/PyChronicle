@@ -12,25 +12,15 @@ class StateReconstructor:
 
     def reconstruct(self, events, target_event_id):
         """
-        Reconstruct the variable state up to target_event_id.
-
-        Parameters
-        ----------
-        events : list
-            List of runtime events.
-        target_event_id : int
-            Event ID up to which the state is reconstructed.
-
-        Returns
-        -------
-        dict
-            Snapshot of reconstructed variables.
+        Reconstruct the variable state up to the given event ID.
         """
 
         self.state.reset()
 
-        for event in events:
+        if not events:
+            return self.state.snapshot()
 
+        for event in events:
             if event["id"] > target_event_id:
                 break
 

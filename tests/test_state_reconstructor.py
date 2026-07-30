@@ -34,3 +34,17 @@ print()
 
 print("State at Event 4")
 print(reconstructor.reconstruct(events, 4))
+print()
+
+print("State at Event 0")
+print(reconstructor.reconstruct(events, 0))
+
+print()
+
+print("State at Event 100")
+print(reconstructor.reconstruct(events, 100))
+
+print()
+
+print("Empty Event List")
+print(reconstructor.reconstruct([], 1))
