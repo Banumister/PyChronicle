@@ -1,24 +1,28 @@
-from textual.screen import Screen
-from textual.widgets import Static, Button
+from textual.app import ComposeResult
 from textual.containers import Vertical
-from database import get_history
+from textual.widgets import Static, Button
+from textual.screen import Screen
+
 
 class HistoryScreen(Screen):
 
-    def compose(self):
-        history = get_history()
+    def compose(self) -> ComposeResult:
+        with Vertical(classes="screen-panel"):
+            yield Static("📖  EXECUTION HISTORY", classes="screen-title")
+            yield Static("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            
+            yield Static("")
+            yield Static("  01.  Debugging session started", classes="screen-content")
+            yield Static("  02.  Entered main function", classes="screen-content")
+            yield Static("  03.  Called process_data()", classes="screen-content")
+            yield Static("  04.  Variable 'x' changed → 42", classes="screen-content")
+            yield Static("  05.  Condition checked (True)", classes="screen-content")
+            yield Static("  06.  Exception raised at line 47", classes="screen-content")
+            yield Static("  07.  Session paused by user", classes="screen-content")
+            yield Static("")
+            
+            yield Button("←  Back to Menu", id="back")
 
-        items = [Static("📄 History")]
-
-        for row in history:
-            items.append(
-                Static(f"ID: {row[0]} | File: {row[1]} | Event: {row[2]}")
-            )
-
-        items.append(Button("← Back", id="back"))
-
-        yield Vertical(*items)
-
-    def on_button_pressed(self, event: Button.Pressed):
+    def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "back":
             self.app.pop_screen()
