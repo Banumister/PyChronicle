@@ -53,8 +53,8 @@ class TraceDatabase:
         """, (
             event["event"],
             event["function"],
-            None,
-            None,
+            event.get("variable"),
+            event.get("value"),
             event["line"],
             event["timestamp"]
         ))
