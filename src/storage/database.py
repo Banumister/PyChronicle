@@ -40,6 +40,11 @@ class TraceDatabase:
         Insert one runtime event into the database.
         """
 
+        value = event.get("value")
+
+        if value is not None:
+            value = str(value)
+
         self.cursor.execute("""
             INSERT INTO trace_events(
                 event,
@@ -54,7 +59,7 @@ class TraceDatabase:
             event["event"],
             event["function"],
             event.get("variable"),
-            event.get("value"),
+            value,
             event["line"],
             event["timestamp"]
         ))
